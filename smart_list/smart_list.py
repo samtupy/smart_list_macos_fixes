@@ -234,7 +234,9 @@ class VirtualSmartList(SmartList):
         self.caching_to = 0
         self.update_cache = update_cache
         self.cache = []
-        self.control.Bind(wx.EVT_CHAR, self.on_list_key_down)
+        # In newer versions of WXPython, the following event handler is doing everything from killing multi-letter navigation to making alt+f4 not exit the application when focused on the smart list.
+        # Lets disable this for now until we can even figure out why it was added in the first place.
+        # self.control.Bind(wx.EVT_CHAR, self.on_list_key_down)
 
     def on_list_key_down(self, evt):
         if evt.KeyCode in self.allowed_navigation_keys:
